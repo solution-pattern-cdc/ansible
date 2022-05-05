@@ -1,5 +1,10 @@
 ---
 
+- name: "uninstall elasticsearch connector"
+  import_role:
+    name: elasticsearch-connector
+    tasks_from: uninstall
+
 - name: "uninstall elasticsearch instance"
   import_role:
     name: elasticsearch

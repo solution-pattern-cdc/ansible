@@ -1,0 +1,7 @@
+---
+
+- name: "install helm chart for elasticsearch connector"
+  kubernetes.core.helm:
+    name: "{{ elasticsearch_connector_helm_chart }}"
+    state: absent
+    release_namespace: "{{ application_namespace }}"

@@ -8,3 +8,7 @@ retail_db_database: retail
 
 # Kafka Connect
 kafka_connect_name: kafka-connect
+
+# ElasticSearch
+elasticsearch_cluster_name: retail
+elasticsearch_user_name: elastic

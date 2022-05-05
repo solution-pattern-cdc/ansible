@@ -1,4 +1,4 @@
 ---
 
 elasticsearch_helm_chart: elasticsearch
-elasticsearch_statefulset: retail-es-default
+elasticsearch_statefulset: "{{ elasticsearch_cluster_name }}-es-default"

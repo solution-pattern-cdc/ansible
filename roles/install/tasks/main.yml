@@ -23,3 +23,7 @@
 - name: "install elasticsearch instance"
   import_role:
     name: elasticsearch
+
+- name: "install elasticsearch connector"
+  import_role:
+    name: elasticsearch-connector
