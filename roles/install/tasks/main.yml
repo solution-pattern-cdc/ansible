@@ -19,4 +19,7 @@
 - name: "install debezium connector"
   import_role:
     name: debezium-connector
-    
+
+- name: "install elasticsearch instance"
+  import_role:
+    name: elasticsearch

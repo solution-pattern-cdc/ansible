@@ -1,0 +1,7 @@
+---
+
+- name: "uninstall helm chart for ElasticSearch instance"
+  kubernetes.core.helm:
+    name: "{{ elasticsearch_helm_chart }}"
+    state: absent
+    release_namespace: "{{ application_namespace }}"

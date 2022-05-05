@@ -1,0 +1,7 @@
+---
+
+- name: "install helm chart for ElasticSearch instance"
+  kubernetes.core.helm:
+    name: "{{ elasticsearch_helm_chart }}"
+    chart_ref: "{{ helm_repo_name }}/{{ elasticsearch_helm_chart }}"
+    release_namespace: "{{ application_namespace }}"

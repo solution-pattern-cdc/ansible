@@ -1,5 +1,10 @@
 ---
 
+- name: "uninstall elasticsearch instance"
+  import_role:
+    name: elasticsearch
+    tasks_from: uninstall
+
 - name: "uninstall Debezium connector"
   import_role:
     name: debezium-connector

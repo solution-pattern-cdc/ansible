@@ -1,0 +1,4 @@
+---
+
+elasticsearch_helm_chart: elasticsearch
+elasticsearch_statefulset: retail-es-default
