@@ -1,0 +1,55 @@
+---
+
+- name: "get subscription for {{ operator_name }} operator"
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: Subscription
+    name: "{{ subscription_name }}"
+    namespace: "{{ subscription_namespace }}"
+  register: r_subscription
+
+- name: "remove csv"
+  k8s:
+    state: absent
+    api_version: operators.coreos.com/v1alpha1
+    kind: ClusterServiceVersion
+    name: "{{ r_subscription.resources[0].status.currentCSV }}"
+    namespace: "{{ subscription_namespace }}"
+  when:
+  - r_subscription.resources | length > 0
+  - r_subscription.resources[0].status.currentCSV is defined
+  - r_subscription.resources[0].status.currentCSV | length > 0
+
+- name: "remove subscription"
+  k8s:
+    state: absent
+    api_version: operators.coreos.com/v1alpha1
+    kind: Subscription
+    name: "{{ subscription_name }}"
+    namespace: "{{ subscription_namespace }}"
+
+- name: "find installplans"
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: InstallPlan
+    namespace: "{{ subscription_namespace }}"
+  register: r_install_plans
+
+- name: "set installplan name"
+  when: r_install_plans.resources | length > 0
+  set_fact:
+    install_plan: "{{ r_install_plans.resources | to_json | from_json | json_query(query) }}"
+  vars:
+    query: >-
+      [?starts_with(spec.clusterServiceVersionNames[0], '{{ csv_prefix }}')].metadata.name|[0]
+
+- name: "remove installplan"
+  when:
+  - install_plan is defined
+  - install_plan | default("") | length > 0
+  k8s:
+    state: absent
+    api_version: operators.coreos.com/v1alpha1
+    kind: InstallPlan
+    name: "{{ install_plan }}"
+    namespace: "{{ subscription_namespace }}"

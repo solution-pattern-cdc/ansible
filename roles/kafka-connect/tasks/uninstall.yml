@@ -1,0 +1,7 @@
+---
+
+- name: "uninstall helm chart for Kafka Connect"
+  kubernetes.core.helm:
+    name: kafka-connect
+    state: absent
+    release_namespace: "{{ application_namespace }}"

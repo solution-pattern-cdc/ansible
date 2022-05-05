@@ -2,6 +2,13 @@
 
 application_namespace=retail
 
+# OpenShift Streams for Apache Kafka
+rhosak_bootstrap_server=
+rhosak_service_account_client_id=
+rhosak_service_account_client_secret=
+# replication factor for topics. Should not exceed the number of brokers. For Streams for Apache Kafka trial instances the number of brokers is 1.
+rhosak_replication_factor=1
+
 # Helm
 helm_repo_name=retail-cdc
 helm_repo_url=https://solution-pattern-cdc.github.io/helm

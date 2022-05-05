@@ -1,0 +1,14 @@
+---
+
+- name: "install helm chart for Kafka Connect"
+  kubernetes.core.helm:
+    name: kafka-connect
+    chart_ref: "{{ helm_repo_name }}/kafka-connect"
+    release_namespace: "{{ application_namespace }}"
+    values:
+      bootstrapServers: "{{ rhosak_bootstrap_server }}"
+      topicPrefix: retail
+      authentication:
+        username: "{{ rhosak_service_account_client_id }}" 
+        password: "{{ rhosak_service_account_client_secret }}"
+      replicationFactor: "{{ rhosak_replication_factor }}"

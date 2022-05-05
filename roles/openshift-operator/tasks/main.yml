@@ -1,0 +1,94 @@
+---
+
+- name: "get packagemanifest for {{ operator_name }} operator"
+  k8s_info:
+    api_version: packages.operators.coreos.com/v1
+    kind: PackageManifest
+    name: "{{ packagemanifest }}"
+    namespace: openshift-marketplace
+  register: r_packagemanifest
+
+- name: "set facts for {{ operator_name }} operator"
+  set_fact:
+    subscription_package_name: "{{ r_packagemanifest.resources[0].status.packageName }}"
+    subscription_catalog_source: "{{ r_packagemanifest.resources[0].status.catalogSource }}"
+    subscription_catalog_source_namespace: "{{ r_packagemanifest.resources[0].status.catalogSourceNamespace }}"
+
+- name: "determine channel for {{ operator_name }} operator if no channel specified"
+  when: subscription_channel | default("") | length == 0
+  set_fact:
+    subscription_channel: "{{ r_packagemanifest.resources[0].status.defaultChannel }}"
+
+- name: "print channel to be installed"
+  debug:
+    msg: "{{ operator_name }} operator channel to be installed: {{ subscription_channel }}"
+
+- name: "create subscription for {{ operator_name }} operator in {{ subscription_namespace }}"
+  k8s:
+    state: present
+    namespace: "{{ subscription_namespace }}"
+    definition: "{{ lookup('template', resource) | from_yaml }}"
+  vars:
+    resource: "subscription.j2"
+
+- name: "wait until installplan is created"
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: InstallPlan
+    namespace: "{{ subscription_namespace }}"
+  register: r_install_plan
+  retries: 30
+  delay: 5
+  until:
+    - r_install_plan.resources | length > 0
+    - r_install_plan.resources | to_json | from_json | json_query(query) | length > 0
+  vars:
+    query: >-
+      [?starts_with(spec.clusterServiceVersionNames[0], '{{ csv_prefix }}')].metadata.name
+
+- name: "manually approve installplan"
+  when: not automatic_installplan_approval
+  block:
+    - name: "set installplan name"
+      set_fact:
+        install_plan: >-
+          {{ r_install_plan.resources | to_json | from_json | json_query(query) }}
+      vars:
+        query: >-
+          [?starts_with(spec.clusterServiceVersionNames[0], '{{ csv_prefix }}')].metadata.name|[0]
+
+    - name: "approve installplan"
+      k8s:
+        state: present
+        namespace: "{{ subscription_namespace }}"
+        definition: "{{ lookup( 'template', resource ) }}"
+      vars:
+        resource: "installplan.j2"
+        install_plan_name: "{{ install_plan }}"
+
+- name: "get installed csv"
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: Subscription
+    name: "{{ subscription_name }}"
+    namespace: "{{ subscription_namespace }}"
+  register: r_subscription
+  retries: 30
+  delay: 5
+  until:
+    - r_subscription.resources[0].status.currentCSV is defined
+    - r_subscription.resources[0].status.currentCSV | length > 0
+
+- name: "wait until csv is installed"
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: ClusterServiceVersion
+    name: "{{ r_subscription.resources[0].status.currentCSV }}"
+    namespace: "{{ subscription_namespace }}"
+  register: r_csv
+  retries: 15
+  delay: 5
+  until:
+    - r_csv.resources[0].status.phase is defined
+    - r_csv.resources[0].status.phase | length > 0
+    - r_csv.resources[0].status.phase == "Succeeded"

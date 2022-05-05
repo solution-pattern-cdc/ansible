@@ -1,6 +1,15 @@
 ---
 
+- name: "install AMQ Streams operator"
+  import_role:
+    name: amq-streams-operator
+
 - name: "install retail-db database"
   import_role:
     name: retail-db
+
+- name: "install Kafka Connect"
+  import_role:
+    name: kafka-connect
+
     

@@ -1,6 +1,11 @@
 ---
 
-- name: "install retail-db database"
+- name: "uninstall Kafka Connect"
+  import_role:
+    name: kafka-connect
+    tasks_from: uninstall
+
+- name: "uninstall retail-db database"
   import_role:
     name: retail-db
     tasks_from: uninstall
