@@ -4,6 +4,10 @@
   import_role:
     name: amq-streams-operator
 
+- name: "install ElasticSearch operator"
+  import_role:
+    name: elasticsearch-operator
+
 - name: "install retail-db database"
   import_role:
     name: retail-db
