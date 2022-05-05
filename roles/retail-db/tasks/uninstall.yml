@@ -1,0 +1,7 @@
+---
+
+- name: "uninstall helm chart for retail database"
+  kubernetes.core.helm:
+    name: retail-db
+    state: absent
+    release_namespace: "{{ application_namespace }}"

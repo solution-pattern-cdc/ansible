@@ -1,1 +1,7 @@
 [all:vars]
+
+application_namespace=retail
+
+# Helm
+helm_repo_name=retail-cdc
+helm_repo_url=https://solution-pattern-cdc.github.io/helm

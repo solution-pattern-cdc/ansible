@@ -1,5 +1,5 @@
 *.retry
 work
 enmasse/resources/enmasse_keycloak_client
-*/inventories/inventory
-*/inventories/inventory-*
+**/inventories/inventory
+**/inventories/inventory-*

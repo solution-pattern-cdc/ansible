@@ -1,0 +1,8 @@
+---
+
+- name: "delete {{ namespace }} namespace"
+  k8s:
+    state: absent
+    api_version: v1
+    kind: namespace
+    name: "{{ namespace }}"

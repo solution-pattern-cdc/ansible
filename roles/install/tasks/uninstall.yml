@@ -1,0 +1,6 @@
+---
+
+- name: "install retail-db database"
+  import_role:
+    name: retail-db
+    tasks_from: uninstall
