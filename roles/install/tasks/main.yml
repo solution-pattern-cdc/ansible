@@ -12,4 +12,7 @@
   import_role:
     name: kafka-connect
 
+- name: "install debezium connector"
+  import_role:
+    name: debezium-connector
     

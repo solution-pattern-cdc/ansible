@@ -1,5 +1,10 @@
 ---
 
+- name: "uninstall Debezium connector"
+  import_role:
+    name: debezium-connector
+    tasks_from: uninstall
+
 - name: "uninstall Kafka Connect"
   import_role:
     name: kafka-connect

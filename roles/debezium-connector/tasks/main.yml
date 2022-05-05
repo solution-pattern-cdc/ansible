@@ -1,0 +1,21 @@
+---
+
+- name: "wait intil Kafka Connect is deployed and ready"
+  import_role:
+    name: kafka-connect
+    tasks_from: kafka-connect-deployed
+
+- name: "install helm chart for Debezium connector"
+  kubernetes.core.helm:
+    name: "{{ debezium_helm_chart }}"
+    chart_ref: "{{ helm_repo_name }}/{{ debezium_helm_chart }}"
+    release_namespace: "{{ application_namespace }}"
+    values:
+      kafkaConnect: "{{ kafka_connect_name }}"
+      database:
+        hostname: "{{ retail_db_hostname }}"
+        user: "{{ retail_db_admin_user }}"
+        password: "{{ retail_db_admin_password }}"
+        dbname: "{{ retail_db_database }}"
+      topic:
+        replicationFactor: "{{ rhosak_replication_factor }}"

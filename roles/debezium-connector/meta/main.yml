@@ -1,0 +1,9 @@
+---
+
+dependencies:
+  - role: helm-repo
+    when: >
+      ACTION is not defined or
+      ACTION is none or
+      ACTION|trim() == "" or
+      ACTION|trim() == "install"

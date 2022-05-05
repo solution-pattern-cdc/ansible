@@ -1,0 +1,10 @@
+---
+
+# retail-db
+retail_db_hostname: retail-db
+retail_db_admin_user: postgres
+retail_db_admin_password: password
+retail_db_database: retail
+
+# Kafka Connect
+kafka_connect_name: kafka-connect

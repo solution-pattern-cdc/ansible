@@ -1,3 +1,4 @@
 ---
 
-kafka_connect_deployment: kafka-connect-connect
+kafka_connect_helm_chart: kafka-connect
+kafka_connect_deployment: "{{ kafka_connect_name }}-connect"

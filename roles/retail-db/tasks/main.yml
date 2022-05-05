@@ -2,6 +2,6 @@
 
 - name: "install helm chart for retail database"
   kubernetes.core.helm:
-    name: retail-db
-    chart_ref: "{{ helm_repo_name }}/retail-db"
+    name: "{{ retail_helm_chart }}"
+    chart_ref: "{{ helm_repo_name }}/{{ retail_helm_chart }}"
     release_namespace: "{{ application_namespace }}"

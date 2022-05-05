@@ -1,7 +1,7 @@
 ---
 
-- name: "uninstall helm chart for Kafka Connect"
+- name: "uninstall helm chart for Debezium connector"
   kubernetes.core.helm:
-    name: "{{ kafka_connect_helm_chart }}"
+    name: "{{ debezium_helm_chart }}"
     state: absent
     release_namespace: "{{ application_namespace }}"
