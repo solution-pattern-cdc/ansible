@@ -8,6 +8,10 @@
   import_role:
     name: elasticsearch-operator
 
+- name: "install Kafdrop"
+  import_role:
+    name: kafdrop
+
 - name: "install retail-db database"
   import_role:
     name: retail-db
@@ -32,6 +36,6 @@
   import_role:
     name: elasticsearch-connector
 
-- name: "install slaes streams application"
+- name: "install sales streams application"
   import_role:
     name: sales-streams-app

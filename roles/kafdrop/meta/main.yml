@@ -1,0 +1,13 @@
+---
+
+dependencies:
+  - role: openshift-namespace
+    when: >
+      ACTION is not defined or
+      ACTION is none or
+      ACTION|trim() == "" or
+      ACTION|trim() == "install"
+    vars:
+      namespace: "{{ application_namespace }}"
+      namespace_description: ""
+      namespace_display_name: ""
