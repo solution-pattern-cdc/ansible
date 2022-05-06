@@ -1,5 +1,10 @@
 ---
 
+- name: "uninstall slaes streams application"
+  import_role:
+    name: sales-streams-app
+    tasks_from: uninstall
+
 - name: "uninstall elasticsearch connector"
   import_role:
     name: elasticsearch-connector

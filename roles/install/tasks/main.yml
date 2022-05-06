@@ -27,3 +27,7 @@
 - name: "install elasticsearch connector"
   import_role:
     name: elasticsearch-connector
+
+- name: "install slaes streams application"
+  import_role:
+    name: sales-streams-app
