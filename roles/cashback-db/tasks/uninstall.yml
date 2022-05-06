@@ -1,0 +1,7 @@
+---
+
+- name: "uninstall helm chart for cashback database"
+  kubernetes.core.helm:
+    name: "{{ cashback_db_helm_chart }}"
+    state: absent
+    release_namespace: "{{ application_namespace }}"

@@ -12,6 +12,10 @@
   import_role:
     name: retail-db
 
+- name: "install cashback-db database"
+  import_role:
+    name: cashback-db
+
 - name: "install Kafka Connect"
   import_role:
     name: kafka-connect

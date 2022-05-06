@@ -25,6 +25,11 @@
     name: kafka-connect
     tasks_from: uninstall
 
+- name: "uninstall cashback-db database"
+  import_role:
+    name: cashback-db
+    tasks_from: uninstall
+
 - name: "uninstall retail-db database"
   import_role:
     name: retail-db

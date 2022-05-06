@@ -1,0 +1,7 @@
+---
+
+- name: "install helm chart for cashback database"
+  kubernetes.core.helm:
+    name: "{{ cashback_db_helm_chart }}"
+    chart_ref: "{{ helm_repo_name }}/{{ cashback_db_helm_chart }}"
+    release_namespace: "{{ application_namespace }}"
