@@ -39,3 +39,7 @@
 - name: "install sales streams application"
   import_role:
     name: sales-streams-app
+
+- name: "install cashback-connector"
+  import_role:
+    name: cashback-connector

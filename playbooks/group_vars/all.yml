@@ -12,3 +12,7 @@ kafka_connect_name: kafka-connect
 # ElasticSearch
 elasticsearch_cluster_name: retail
 elasticsearch_user_name: elastic
+
+# cashback-db
+cashback_db_secret: cashback-db
+cashback_db_service: cashback-db
