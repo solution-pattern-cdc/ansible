@@ -34,6 +34,7 @@ Short instructions:
     * `retail.updates.public.product`, with 1 partition
     * `retail.updates.public.sale`, with 1 partition
     * `retail.updates.public.line_item`, with 1 partition
+    * `retail.expense-event`, with 1 partition
     > **Note:** The `retail.updates.*` topics contain the change events captured by Debezium. Normally these topics are auto-created by Debezium. For this demo they are created upfront to ensure that all components of the application start up correctly without data in the database.
 
 **Running the playbook**
