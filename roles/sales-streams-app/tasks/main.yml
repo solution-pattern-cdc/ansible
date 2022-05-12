@@ -11,4 +11,4 @@
         userId: "{{ rhosak_service_account_client_id }}"
         password: "{{ rhosak_service_account_client_secret }}"
         streams:
-          replicationFactor: 1
+          replicationFactor: "{{ rhosak_replication_factor }}"
