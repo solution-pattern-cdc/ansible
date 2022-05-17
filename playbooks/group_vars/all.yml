@@ -1,10 +1,7 @@
 ---
 
 # retail-db
-retail_db_hostname: retail-db
 retail_db_admin_user: postgres
-retail_db_admin_password: password
-retail_db_database: retail
 retail_db_secret: retail-db
 retail_db_service: retail-db
 
