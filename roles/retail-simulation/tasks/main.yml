@@ -1,0 +1,27 @@
+---
+
+- name: "get retail-db secret"
+  k8s_info:
+    api_version: v1
+    kind: secret
+    namespace: "{{ application_namespace }}"
+    name: "{{ retail_db_secret }}"
+  register: r_retail_db_credentials
+
+- name: "get retail-db credentials"
+  set_fact:
+    retail_db_username: "{{ r_retail_db_credentials.resources[0].data['database-user'] | b64decode }}"
+    retail_db_password: "{{ r_retail_db_credentials.resources[0].data['database-password'] | b64decode }}"
+    retail_db_database: "{{ r_retail_db_credentials.resources[0].data['database-name'] | b64decode }}"
+
+- name: "install helm chart for retail-simulation app"
+  kubernetes.core.helm:
+    name: "{{ retail_simulation_helm_chart }}"
+    chart_ref: "{{ helm_repo_name }}/{{ retail_simulation_helm_chart }}"
+    release_namespace: "{{ application_namespace }}"
+    values:
+      postgresql:
+        host: "{{ retail_db_service }}.{{ application_namespace }}.svc"
+        username: "{{ retail_db_username }}"
+        password: "{{ retail_db_password }}"
+        database: "{{ retail_db_database }}"
