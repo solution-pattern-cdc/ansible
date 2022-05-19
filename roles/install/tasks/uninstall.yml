@@ -1,5 +1,10 @@
 ---
 
+- name: "uninstall retail-simulation"
+  import_role:
+    name: retail-simulation
+    tasks_from: uninstall
+
 - name: "uninstall cashback-connector"
   import_role:
     name: cashback-connector
@@ -33,6 +38,11 @@
 - name: "uninstall cashback-db database"
   import_role:
     name: cashback-db
+    tasks_from: uninstall
+
+- name: "uninstall Kafdrop"
+  import_role:
+    name: kafdrop
     tasks_from: uninstall
 
 - name: "uninstall retail-db database"

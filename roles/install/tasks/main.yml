@@ -43,3 +43,7 @@
 - name: "install cashback-connector"
   import_role:
     name: cashback-connector
+
+- name: "install retail-simulation"
+  import_role:
+    name: retail-simulation
