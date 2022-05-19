@@ -15,3 +15,4 @@ helm_repo_url=https://solution-pattern-cdc.github.io/helm
 
 # Kafdrop
 kafdrop_image=obsidiandynamics/kafdrop:latest
+default_page_size=15

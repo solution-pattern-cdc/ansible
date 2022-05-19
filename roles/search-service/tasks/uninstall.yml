@@ -1,6 +1,6 @@
 ---
 
-- name: "install helm chart for search service"
+- name: "uninstall helm chart for search service app"
   kubernetes.core.helm:
     name: "{{ search_service_helm_chart }}"
     state: absent

@@ -47,3 +47,15 @@
 - name: "install retail-simulation"
   import_role:
     name: retail-simulation
+
+- name: "install cashback-service"
+  import_role:
+    name: cashback-service
+
+- name: "install cashback-service-ui"
+  import_role:
+    name: cashback-service-ui
+
+- name: "install search service"
+  import_role:
+    name: search-service

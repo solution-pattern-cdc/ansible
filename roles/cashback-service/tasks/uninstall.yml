@@ -1,7 +1,7 @@
 ---
 
-- name: "install helm chart for search service"
+- name: "uninstall helm chart for cashback service"
   kubernetes.core.helm:
-    name: "{{ search_service_helm_chart }}"
+    name: "{{ cashback_service_helm_chart }}"
     state: absent
     release_namespace: "{{ application_namespace }}"

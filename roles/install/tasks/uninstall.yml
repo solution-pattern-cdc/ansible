@@ -1,4 +1,18 @@
 ---
+- name: "uninstall search service"
+  import_role:
+    name: search-service
+    tasks_from: uninstall
+
+- name: "uninstall cashback-service"
+  import_role:
+    name: cashback-service
+    tasks_from: uninstall
+
+- name: "uninstall cashback service ui"
+  import_role:
+    name: cashback-service-ui
+    tasks_from: uninstall
 
 - name: "uninstall retail-simulation"
   import_role:
@@ -10,7 +24,7 @@
     name: cashback-connector
     tasks_from: uninstall
 
-- name: "uninstall slaes streams application"
+- name: "uninstall sales streams application"
   import_role:
     name: sales-streams-app
     tasks_from: uninstall
@@ -49,3 +63,4 @@
   import_role:
     name: retail-db
     tasks_from: uninstall
+
