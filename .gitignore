@@ -1,4 +1,5 @@
 *.retry
+.idea
 work
 enmasse/resources/enmasse_keycloak_client
 **/inventories/inventory

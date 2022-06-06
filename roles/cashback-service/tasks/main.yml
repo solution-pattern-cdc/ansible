@@ -20,6 +20,7 @@
     chart_ref: "{{ helm_repo_name }}/{{ cashback_service_helm_chart }}"
     release_namespace: "{{ application_namespace }}"
     values:
+      default_page_size: 15
       kafka:
         bootstrapServer:  "{{ rhosak_bootstrap_server }}"
         userId: "{{ rhosak_service_account_client_id }}"
@@ -29,4 +30,4 @@
         username: "{{ cashback_db_username }}"
         password: "{{  cashback_db_password }}"
         database: "{{ cashback_db_database }}"
-      default_page_size: 15
+

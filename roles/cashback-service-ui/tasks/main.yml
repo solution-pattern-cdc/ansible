@@ -19,9 +19,10 @@
     chart_ref: "{{ helm_repo_name }}/{{ cashback_service_ui_helm_chart }}"
     release_namespace: "{{ application_namespace }}"
     values:
+      default_page_size: 15
       postgresql:
         host: "{{ cashback_db_service }}.{{ application_namespace }}.svc"
         username: "{{ cashback_db_username }}"
         password: "{{  cashback_db_password }}"
         database: "{{ cashback_db_database }}"
-      default_page_size: 15
+

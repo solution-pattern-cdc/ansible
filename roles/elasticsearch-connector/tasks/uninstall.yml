@@ -1,7 +1,8 @@
 ---
 
-- name: "install helm chart for search service"
+- name: "Uninstall helm chart for elasticsearch connector"
   kubernetes.core.helm:
-    name: "{{ search_service_helm_chart }}"
+    name: "{{ elasticsearch_connector_helm_chart }}"
     state: absent
     release_namespace: "{{ application_namespace }}"
+
