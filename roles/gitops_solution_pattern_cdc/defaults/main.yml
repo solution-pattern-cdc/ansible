@@ -1,0 +1,21 @@
+---
+
+# Namespace
+gitops_solution_pattern_cdc_namespace: retail
+
+# Application
+gitops_solution_pattern_cdc_application_name: solution-pattern-cdc
+gitops_solution_pattern_cdc_application_namespace: openshift-gitops
+
+gitops_solution_pattern_cdc_application_repo: https://github.com/solution-pattern-cdc/helm.git
+gitops_solution_pattern_cdc_application_repo_tag: main
+gitops_solution_pattern_cdc_application_repo_path: retail
+
+gitops_solution_pattern_cdc_elasticsearch_enabled: "true"
+gitops_solution_pattern_cdc_argocd_syncwaves_enabled: "true"
+gitops_solution_pattern_cdc_debezium_enabled: "true"
+gitops_solution_pattern_cdc_deploy_integration_platform: false
+
+gitops_solution_pattern_cdc_kafka_cluster_replicas: 2
+gitops_solution_pattern_cdc_kafka_zookeeper_replicas: 3
+gitops_solution_pattern_cdc_kafka_topic_replication_factor: 2

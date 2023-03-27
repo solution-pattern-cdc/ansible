@@ -1,8 +1,0 @@
----
-
-- name: "uninstall helm chart for sales kafka streams application"
-  kubernetes.core.helm:
-    name: "{{ sales_streams_app_helm_chart }}"
-    state: absent
-    release_namespace: "{{ application_namespace }}"
-   

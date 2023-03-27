@@ -1,8 +1,0 @@
----
-
-- name: "create {{ namespace }} namespace"
-  k8s:
-    state: present
-    definition: "{{ lookup('template', resource ) | from_yaml }}"
-  vars:
-    resource: "templates/namespace.j2"

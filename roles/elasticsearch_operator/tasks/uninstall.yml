@@ -1,0 +1,18 @@
+---
+
+- name: Remove Operator
+  ansible.builtin.include_role:
+    name: install_operator
+  vars:
+    install_operator_action: remove
+    install_operator_name: amq-streams
+    install_operator_namespace: openshift-operators
+    install_operator_channel: "{{ elasticsearch_channel }}"
+    install_operator_catalog: redhat-operators
+    install_operator_automatic_install_plan_approval: "{{ elasticsearch_automatic_install_plan_approval | default(true) }}"
+    install_operator_starting_csv: "{{ elasticsearch_starting_csv }}"
+    install_operator_catalogsource_setup: "{{ elasticsearch_use_catalog_snapshot | default(false) }}"
+    install_operator_catalogsource_name: "{{ elasticsearch_catalogsource_name | default('') }}"
+    install_operator_catalogsource_namespace: openshift-operators
+    install_operator_catalogsource_image: "{{ elasticsearch_catalog_snapshot_image | default('') }}"
+    install_operator_catalogsource_image_tag: "{{ elasticsearch_catalog_snapshot_image_tag | default('') }}"

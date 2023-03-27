@@ -1,0 +1,66 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ gitops_solution_pattern_cdc_application_name }}
+  namespace: {{ gitops_solution_pattern_cdc_application_namespace }}
+spec:
+  destination:
+    name: ""
+    namespace: "{{ gitops_solution_pattern_cdc_namespace }}"
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+  source:
+    repoURL: {{ gitops_solution_pattern_cdc_application_repo }}
+    targetRevision: {{ gitops_solution_pattern_cdc_application_repo_tag }}
+    path: {{ gitops_solution_pattern_cdc_application_repo_path }}
+    helm:
+      values: |            
+        argocd: &argo
+          enabled: {{ gitops_solution_pattern_cdc_argocd_syncwaves_enabled }}
+
+        elasticsearch:
+          enabled: {{ gitops_solution_pattern_cdc_elasticsearch_enabled }}
+          argocd: *argo
+
+        cashback-db:
+          argocd: *argo
+
+        kafka-broker:
+          argocd: *argo
+          kafka:
+            cluster:
+              replicas: {{ gitops_solution_pattern_cdc_kafka_cluster_replicas }}
+            zookeeper:
+              replicas: {{ gitops_solution_pattern_cdc_kafka_zookeeper_replicas }}
+            config:
+              defaultReplicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+              offsetsTopicReplicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+              transactionStateLogReplicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+              transactionStateLogMinIsr: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+
+        kafka-connect:
+          argocd: *argo
+          replicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+
+        kafka-topics:
+          argocd: *argo
+          kafka:
+            replicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+
+        retail-db:
+          argocd: *argo
+
+        debezium:
+          enabled: {{ gitops_solution_pattern_cdc_debezium_enabled }}
+          topic:
+            replicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}
+
+        sales-streams:
+          kafka:
+            streams:
+              replicationFactor: {{ gitops_solution_pattern_cdc_kafka_topic_replication_factor }}

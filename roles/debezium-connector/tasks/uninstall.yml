@@ -1,7 +1,0 @@
----
-
-- name: "uninstall helm chart for Debezium connector"
-  kubernetes.core.helm:
-    name: "{{ debezium_helm_chart }}"
-    state: absent
-    release_namespace: "{{ application_namespace }}"

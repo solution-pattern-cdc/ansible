@@ -1,61 +1,17 @@
 ---
 
-- name: "install AMQ Streams operator"
-  import_role:
-    name: amq-streams-operator
+- name: "Install AMQ Streams operator"
+  ansible.builtin.import_role:
+    name: amq_streams_operator
 
-- name: "install ElasticSearch operator"
-  import_role:
-    name: elasticsearch-operator
+- name: "Install ElasticSearch operator"
+  ansible.builtin.import_role:
+    name: elasticsearch_operator
 
-- name: "install Kafdrop"
-  import_role:
-    name: kafdrop
+- name: "Install OpenShift Gitops"
+  ansible.builtin.import_role:
+    name: openshift_gitops
 
-- name: "install retail-db database"
-  import_role:
-    name: retail-db
-
-- name: "install cashback-db database"
-  import_role:
-    name: cashback-db
-
-- name: "install Kafka Connect"
-  import_role:
-    name: kafka-connect
-
-- name: "install debezium connector"
-  import_role:
-    name: debezium-connector
-
-- name: "install elasticsearch instance"
-  import_role:
-    name: elasticsearch
-
-- name: "install elasticsearch connector"
-  import_role:
-    name: elasticsearch-connector
-
-- name: "install sales streams application"
-  import_role:
-    name: sales-streams-app
-
-- name: "install cashback-connector"
-  import_role:
-    name: cashback-connector
-
-- name: "install retail-simulation"
-  import_role:
-    name: retail-simulation
-
-- name: "install cashback-service"
-  import_role:
-    name: cashback-service
-
-- name: "install cashback-service-ui"
-  import_role:
-    name: cashback-service-ui
-
-- name: "install search service"
-  import_role:
-    name: search-service
+- name: "Install Solution Pattern ArgoCD Application"
+  ansible.builtin.import_role:
+    name: gitops_solution_pattern_cdc
