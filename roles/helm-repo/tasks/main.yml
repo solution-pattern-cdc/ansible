@@ -1,6 +1,0 @@
----
-
-- name: "add helm repo for retail application"
-  kubernetes.core.helm_repository:
-    name: "{{ helm_repo_name }}"
-    repo_url: "{{ helm_repo_url }}"

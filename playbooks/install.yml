@@ -7,15 +7,17 @@
   run_once: true
 
   tasks:
-    - include_role:
-        name: ../roles/install
+    - name: "Install solution pattern"
+      ansible.builtin.include_role:
+        name: install
       when: >
         ACTION is not defined or
         ACTION is none or
         ACTION|trim() == "" or
         ACTION|trim() == "install"
-    - include_role:
-        name: ../roles/install
+    - name: "Unnstall solution pattern"
+      ansible.builtin.include_role:
+        name: install
         tasks_from: uninstall
       when: >
         ACTION is defined and

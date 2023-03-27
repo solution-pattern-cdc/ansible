@@ -1,0 +1,43 @@
+---
+
+# Defaults values below are for Red Hat Integration - AMQ Streams 1.7.0
+# Channel to use for the Red Hat Integration subscription
+# When not set (or set to "") use the default channel for the
+# OpenShift version this operator is installed on. If there is no matching
+# version use the `defaultChannel`
+amq_streams_channel: ""
+
+# Set automatic InstallPlan approval. If set to false it is also suggested
+# to set the starting_csv to pin a specific version
+# This variable has no effect when using a catalog snapshot (always true)
+amq_streams_automatic_install_plan_approval: true
+
+# Set a starting ClusterServiceVersion.
+# Recommended to leave empty to get latest in the channel when not using
+# a catalog snapshot.
+# Highly recommended to be set when using a catalog snapshot but can be
+# empty to get the latest available in the channel at the time when
+# the catalog snapshot got created.
+amq_streams_starting_csv: ""
+
+# Wait for the deployment to finish - and check that it finished successfully
+amq_streams_wait_for_deploy: true
+
+# --------------------------------
+# Operator Catalog Snapshot Settings
+# --------------------------------
+# See https://github.com/redhat-cop/agnosticd/blob/development/docs/Operator_Catalog_Snapshots.adoc
+# for instructions on how to set up catalog snapshot images
+
+# Use a catalog snapshot
+amq_streams_use_catalog_snapshot: false
+
+# Catalog Source Name when using a catalog snapshot. This should be unique
+# in the cluster to avoid clashes
+amq_streams_catalogsource_name: redhat-operators-snapshot-amq-streams
+
+# Catalog snapshot image
+amq_streams_catalog_snapshot_image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
+
+# Catalog snapshot image tag
+amq_streams_catalog_snapshot_image_tag: "v4.6_2021_05_10"

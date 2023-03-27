@@ -1,9 +1,0 @@
----
-
-elasticsearch_operator_packagemanifest: elasticsearch-eck-operator-certified
-elasticsearch_operator_subscription_channel: stable
-elasticsearch_operator_subscription_name: elasticsearch-eck-operator-certified
-elasticsearch_operator_subscription_automatic_installplan_approval: True
-elasticsearch_operator_subscription_starting_csv: ""
-elasticsearch_operator_csv_prefix: elasticsearch
-elasticsearch_operator_deployment_name_prefix: elastic-operator

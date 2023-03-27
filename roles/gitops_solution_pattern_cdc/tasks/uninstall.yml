@@ -1,0 +1,11 @@
+---
+
+- name: Remove application
+  kubernetes.core.k8s:
+    state: absent
+    definition: "{{ lookup('template', 'application.yaml.j2') | from_yaml }}"
+
+- name: Remove application namespace
+  kubernetes.core.k8s:
+    state: absent
+    resource_definition: "{{ lookup('template', 'namespace.yaml.j2') }}"
