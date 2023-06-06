@@ -15,7 +15,7 @@
         ACTION is none or
         ACTION|trim() == "" or
         ACTION|trim() == "install"
-    - name: "Unnstall solution pattern"
+    - name: "Uninstall solution pattern"
       ansible.builtin.include_role:
         name: install
         tasks_from: uninstall
