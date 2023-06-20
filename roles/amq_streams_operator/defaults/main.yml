@@ -34,10 +34,10 @@ amq_streams_use_catalog_snapshot: false
 
 # Catalog Source Name when using a catalog snapshot. This should be unique
 # in the cluster to avoid clashes
-amq_streams_catalogsource_name: redhat-operators-snapshot-amq-streams
+amq_streams_catalogsource_name: ""
 
 # Catalog snapshot image
-amq_streams_catalog_snapshot_image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
+amq_streams_catalog_snapshot_image: ""
 
 # Catalog snapshot image tag
-amq_streams_catalog_snapshot_image_tag: "v4.6_2021_05_10"
+amq_streams_catalog_snapshot_image_tag: ""

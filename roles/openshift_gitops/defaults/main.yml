@@ -1,7 +1,7 @@
 ---
 
 # Channel to use for the OpenShift GitOps subscription
-openshift_gitops_channel: stable
+openshift_gitops_channel: latest
 
 # Set automatic InstallPlan approval. If set to false it is also suggested
 # to set the starting_csv to pin a specific version
@@ -107,10 +107,10 @@ openshift_gitops_use_catalog_snapshot: false
 
 # Catalog Source Name when using a catalog snapshot. This should be unique
 # in the cluster to avoid clashes
-openshift_gitops_catalogsource_name: redhat-operators-snapshot-gitops
+openshift_gitops_catalogsource_name: ""
 
 # Catalog snapshot image
-openshift_gitops_catalog_snapshot_image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
+openshift_gitops_catalog_snapshot_image: ""
 
 # Catalog snapshot image tag
-openshift_gitops_catalog_snapshot_image_tag: v4.10_2022_07_18
+openshift_gitops_catalog_snapshot_image_tag: ""
